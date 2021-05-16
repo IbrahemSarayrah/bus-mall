@@ -41,20 +41,20 @@ h1 {
 
 #leftImg {
     float: left;
-    width: 300px;
-    height: 300px;
+    width: 270px;
+    height: 270px;
     margin-left: 30px;
 }
 
 #rightImg {
     float: left;
-    width: 300px;
-    height: 300px;
+    width: 270px;
+    height: 270px;
 }
 
 #midImg {
-    width: 300px;
-    height: 300px;
+    width: 270px;
+    height: 270px;
     float: left;
 }
 
