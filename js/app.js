@@ -10,7 +10,7 @@ let rightImgIndex;
 let leftImgElement = document.getElementById('leftImg');
 let midImgElement = document.getElementById('midImg');
 let rightImgElement = document.getElementById('rightImg');
-
+let imagesSection = document.getElementById('imagesSection');
 
 /////////////////////////////// constructor
 
@@ -89,9 +89,8 @@ renderThreeImg();
 let maxAttempt = 25;
 let userAttempt = 0;
 
-leftImgElement.addEventListener('click', userClick );
-midImgElement.addEventListener('click', userClick);
-rightImgElement.addEventListener('click', userClick);
+imagesSection.addEventListener('click', userClick );
+
 
 function userClick (event){
   userAttempt = userAttempt +1;
@@ -108,12 +107,11 @@ function userClick (event){
     }else {
       allMallImg[rightImgIndex].vote = allMallImg[rightImgIndex].vote + 1 ;
     }
-    renderThreeImg();
-  }else {
-    leftImgElement.removeEventListener('click' , userClick);
-    midImgElement.removeEventListener('click' , userClick);
-    rightImgElement.removeEventListener('click' , userClick);
 
+    renderThreeImg();
+
+  }else {
+    imagesSection.removeEventListener('click' , userClick);
     let list = document.getElementById('result');
     let li;
     for (let i = 0; i < allMallImg.length; i++){
