@@ -28,7 +28,7 @@ h1 {
 #imagesSection {
     width: 70%;
     float: right;
-    background-color: rgb(109, 94, 241);
+    background-color: rgb(217, 213, 253);
     height: 900px;
 }
 
@@ -103,4 +103,8 @@ footer p {
     font-family: 'Montserrat', sans-serif;
     padding: 20px;
     color: rgb(37, 37, 37);
+}
+
+#chart {
+    display: none;
 }

@@ -2,6 +2,9 @@
 //////////////// global
 
 let allMallImg = [];
+let allName = [];
+let itemVote = [];
+let itemSeen = [];
 
 let leftImgIndex;
 let midImgIndex;
@@ -20,6 +23,7 @@ function BussImages (name , source) {
   this.vote =0;
   this.seen=0;
   allMallImg.push(this);
+  allName.push(this.name);
 }
 
 new BussImages ('bag' , 'img/bag.jpg');
@@ -53,7 +57,7 @@ function randomIndex (){
 
 ///////////////////////////// log random index
 // console.log(randomIndex());
-
+let firstSet = [];
 function renderThreeImg (){
   leftImgIndex = randomIndex();
   midImgIndex = randomIndex();
@@ -70,6 +74,14 @@ function renderThreeImg (){
   while (midImgIndex === rightImgIndex) {
     rightImgIndex = randomIndex();
   }
+  if (firstSet.includes(leftImgIndex) || firstSet.includes(midImgIndex) || firstSet.includes(rightImgIndex)) {
+    renderThreeImg();
+  }
+  firstSet = [];
+  firstSet.push(leftImgIndex);
+  firstSet.push(midImgIndex);
+  firstSet.push(rightImgIndex);
+  console.log(firstSet);
 
   //   console.log('left ' + leftImgIndex);
   //   console.log('mid ' + midImgIndex);
@@ -118,8 +130,11 @@ function userClick (event){
       li = document.createElement ('li');
       list.appendChild(li);
       li.textContent = `${allMallImg[i].name} had ${allMallImg[i].vote} votes, and was seen ${allMallImg[i].seen} times`;
+      itemVote.push(allMallImg[i].vote);
+      itemSeen.push(allMallImg[i].seen);
+      console.log(itemSeen);
     }
-
+    chart();
   }
 }
 
@@ -127,11 +142,59 @@ console.log(allMallImg);
 
 /////////// button hide/show
 
+// eslint-disable-next-line no-unused-vars
 function hideDiv () {
   let btn = document.getElementById('result');
-  if (btn.style.display === 'block') {
+  let btn2 = document.getElementById('chart');
+  if (btn.style.display === 'block' || btn2.style.display === 'block') {
     btn.style = 'none';
+    btn2.style = 'none';
   }else {
     btn.style.display = 'block';
+    btn2.style.display = 'block';
   }
+}
+
+///////////////////// chart
+function chart(){
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: allName,
+      datasets: [
+        {
+          label: '# of Votes',
+          data: itemVote,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+
+          ],
+          borderWidth: 1
+        },
+        {
+          label: '# of Seen',
+          data: itemSeen,
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
