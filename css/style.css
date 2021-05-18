@@ -25,7 +25,7 @@ h1 {
     font-family: 'Montserrat', sans-serif;
 }
 
-#imagesSection {
+#imageDiv {
     width: 70%;
     float: right;
     background-color: rgb(217, 213, 253);
@@ -40,14 +40,11 @@ h1 {
 }
 
 #leftImg {
-    float: left;
     width: 250px;
     height: 250px;
-    margin-left: 25px;
 }
 
 #rightImg {
-    float: left;
     width: 250px;
     height: 250px;
 }
@@ -55,7 +52,6 @@ h1 {
 #midImg {
     width: 250px;
     height: 250px;
-    float: left;
 }
 
 button {
@@ -65,24 +61,27 @@ button {
     color: white;
     background: rgb(16, 21, 107);
     margin-left: 40%;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 
 }
 
 h2 {
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
     font-weight: 900;
     margin-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(51, 44, 30);
+    margin-bottom: 10px;
 }
 
 li {
-    font-size: 15px;
-    padding: 12px;
+    font-size: 10px;
+    padding: 5px;
     font-family: 'Montserrat', sans-serif;
     color: rgb(5, 24, 24);
+    margin-left: 10px;
 }
 
 #result {
@@ -107,4 +106,17 @@ footer p {
 
 #chart {
     display: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+#imagesSection ul {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#imagesSection ul li{
+    display: inline-block;
+}
+
