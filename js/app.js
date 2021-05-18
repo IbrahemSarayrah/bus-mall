@@ -26,6 +26,27 @@ function BussImages (name , source) {
   allName.push(this.name);
 }
 
+//////////////////////////// local storage
+
+function setImagesVote (){
+  let votes = JSON.stringify(allMallImg);
+  // console.log('string ',votes);
+  localStorage.setItem('Votes', votes);
+}
+
+function getImagesVote() {
+  let stringVote = localStorage.getItem ('Votes');
+  console.log(stringVote);
+  let normalVote = JSON.parse(stringVote);
+  console.log (normalVote);
+  if (normalVote !== null) {
+    allMallImg = normalVote;
+  }
+  renderThreeImg();
+}
+
+
+
 new BussImages ('bag' , 'img/bag.jpg');
 new BussImages ('banana' , 'img/banana.jpg');
 new BussImages ('bathroom' , 'img/bathroom.jpg');
@@ -81,7 +102,7 @@ function renderThreeImg (){
   firstSet.push(leftImgIndex);
   firstSet.push(midImgIndex);
   firstSet.push(rightImgIndex);
-  console.log(firstSet);
+  //console.log(firstSet);
 
   //   console.log('left ' + leftImgIndex);
   //   console.log('mid ' + midImgIndex);
@@ -93,11 +114,10 @@ function renderThreeImg (){
   allMallImg[midImgIndex].seen++;
   rightImgElement.src = allMallImg [rightImgIndex].source;
   allMallImg[rightImgIndex].seen++;
-
 }
 
-renderThreeImg();
 
+renderThreeImg();
 let maxAttempt = 25;
 let userAttempt = 0;
 
@@ -110,7 +130,7 @@ function userClick (event){
   // console.log (userAttempt);
 
   if (userAttempt <= maxAttempt) {
-    console.log (userAttempt);
+    //console.log (userAttempt);
 
     if (event.target.id === 'leftImg'){
       allMallImg[leftImgIndex].vote = allMallImg[leftImgIndex].vote + 1;
@@ -119,7 +139,6 @@ function userClick (event){
     }else {
       allMallImg[rightImgIndex].vote = allMallImg[rightImgIndex].vote + 1 ;
     }
-
     renderThreeImg();
 
   }else {
@@ -132,13 +151,14 @@ function userClick (event){
       li.textContent = `${allMallImg[i].name} had ${allMallImg[i].vote} votes, and was seen ${allMallImg[i].seen} times`;
       itemVote.push(allMallImg[i].vote);
       itemSeen.push(allMallImg[i].seen);
-      console.log(itemSeen);
+      //console.log(itemSeen);
     }
+    setImagesVote();
     chart();
   }
 }
 
-console.log(allMallImg);
+//console.log(allMallImg);
 
 /////////// button hide/show
 
@@ -198,3 +218,5 @@ function chart(){
     }
   });
 }
+
+getImagesVote();
