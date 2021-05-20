@@ -174,6 +174,25 @@ function hideDiv () {
     btn2.style.display = 'block';
   }
 }
+///////////////////////////////// change number of clicks
+
+let numberClicks= document.getElementById('form');
+
+numberClicks.addEventListener('submit' , numberOfClicks);
+
+function numberOfClicks(event) {
+  event.preventDefault();
+  maxAttempt = event.target.changeNumber.value;
+}
+
+
+
+
+
+
+
+
+
 
 ///////////////////// chart
 function chart(){
